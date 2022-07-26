@@ -1,7 +1,7 @@
 # Nomadcoders 왕초보를 위한 React Native 101 study
 
 > 참고
-> [snack.expo.dev][https://snack.expo.dev/]
+> [snack.expo.dev](https://snack.expo.dev/)
 > web, ipad 등에서 앱을 개발하고, 직접 simulate 할 수 있는 site.
 
 ## 1. React-Native의 작동방식
@@ -17,7 +17,7 @@ JS는 개발자들이 운영체제를 상대로 메세지를 주고 받기 위�
 # 2. Expo setup
 
 Expo는 앱 전체를 컴파일하지 않아도, JS코드를 바로 전송시켜 코드를 미리보기 할 수 있도록 도와준다.(Java, xcode등이 없어도 됨!)
-[doc.expo.dev][https://docs.expo.dev/]
+[doc.expo.dev](https://docs.expo.dev/)
 
 <pre>
 1. Requirement
@@ -31,7 +31,7 @@ npm install --global expo-cli
 ```
 
 명령어를 통해 expo-cli 설치
-mac os 사용자는 watchman 추가 설치 필요 [wtachman][https://facebook.github.io/watchman/docs/install#buildinstall]
+mac os 사용자는 watchman 추가 설치 필요 [wtachman](https://facebook.github.io/watchman/docs/install#buildinstall)
 
 ```
 $ brew update
