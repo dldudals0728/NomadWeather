@@ -16,11 +16,11 @@ JS는 개발자들이 운영체제를 상대로 메세지를 주고 받기 위�
 
 # 2. Expo setup
 
-Expo는 앱 전체를 컴파일하지 않아도, JS코드를 바로 전송시켜 코드를 미리보기 할 수 있도록 도와준다.(Java, xcode등이 없어도 됨!)
+Expo는 앱 전체를 컴파일하지 않아도, JS코드를 바로 전송시켜 코드를 미리보기 할 수 있도록 도와준다. (Java, xcode등이 없어도 됨!)
 [doc.expo.dev](https://docs.expo.dev/)
 
 <pre>
-1. Requirement
+Requirement
     node js(LTS)
 </pre>
 
@@ -41,7 +41,7 @@ $ brew install watchman
 2. Expo 앱 설치
    앱스토어에서 Expo 앱을 설치 및 로그인
 
-   > in Android: Expo
+   > in Android: Expo  
    > in IOS: Expo Go
 
 3. initialize Expo project
