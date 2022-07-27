@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { Fontisto } from "@expo/vector-icons";
+import { Fontisto, EvilIcons } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -80,8 +80,20 @@ export default function App() {
   }, []);
   return (
     <View style={styles.container}>
-      <View style={styles.city}>
-        <Text style={styles.cityName}>{city}</Text>
+      <View style={styles.title}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: 100,
+          }}
+        >
+          <EvilIcons name="navicon" size={24} color="black" />
+          <Text style={styles.cityName}>{city}</Text>
+          <Fontisto name="search" size={24} color="black" />
+        </View>
         <View style={styles.date}>
           <Text style={{ fontSize: 30, fontWeight: "500" }}>{todayOfWeek}</Text>
           <View style={{ flexDirection: "row" }}>
@@ -97,7 +109,13 @@ export default function App() {
         contentContainerStyle={styles.weather}
       >
         {days.length === 0 ? (
-          <View style={{ ...styles.day, alignItems: "center" }}>
+          <View
+            style={{
+              ...styles.day,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <ActivityIndicator
               color="white"
               style={{
@@ -202,16 +220,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "orange",
   },
-  city: {
+  title: {
     flex: 0.5,
     justifyContent: "flex-start",
     alignItems: "center",
   },
   cityName: {
-    flex: 1,
+    flex: 0.9,
     fontSize: 30,
     fontWeight: "600",
-    marginTop: 100,
+    textAlign: "center",
   },
   date: {
     flex: 3,
