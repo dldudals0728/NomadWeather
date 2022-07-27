@@ -26,6 +26,33 @@ const icons = {
 };
 
 export default function App() {
+  const WEEK = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const MONTH = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let now = new Date();
+  let todayDate = now.getDate();
+  let todayMonth = MONTH[now.getMonth()];
+  let todayOfWeek = WEEK[now.getDay()];
   const [city, setCity] = useState("Loading...");
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
@@ -55,6 +82,13 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.city}>
         <Text style={styles.cityName}>{city}</Text>
+        <View style={styles.date}>
+          <Text style={{ fontSize: 30, fontWeight: "500" }}>{todayOfWeek}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.dateText}>{todayDate}</Text>
+            <Text style={styles.dateText}>{todayMonth}</Text>
+          </View>
+        </View>
       </View>
       <ScrollView
         pagingEnabled
@@ -74,26 +108,86 @@ export default function App() {
           </View>
         ) : (
           days.map((day, index) => (
-            <View key={index} style={styles.day}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  width: "100%",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Text style={styles.temp}>
-                  {parseFloat(day.temp.day).toFixed(1)}
-                </Text>
-                <Fontisto
-                  name={icons[day.weather[0].main]}
-                  size={68}
-                  color="black"
-                />
+            <View key={index}>
+              <View style={styles.day}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "100%",
+                    paddingTop: 50,
+                    justifyContent: "space-between",
+                    borderTopColor: "black",
+                    borderTopWidth: "2",
+                  }}
+                >
+                  <Text style={styles.temp}>
+                    {parseFloat(day.temp.day).toFixed(1)}
+                  </Text>
+                  <Fontisto
+                    name={icons[day.weather[0].main]}
+                    size={68}
+                    color="black"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: "100%",
+                    paddingBottom: 110,
+                    borderBottomColor: "black",
+                    borderBottomWidth: "2",
+                  }}
+                >
+                  <Text style={styles.description}>{day.weather[0].main}</Text>
+                  <Text style={styles.tinyText}>
+                    {day.weather[0].description}
+                  </Text>
+                </View>
               </View>
-              <Text style={styles.description}>{day.weather[0].main}</Text>
-              <Text style={styles.tinyText}>{day.weather[0].description}</Text>
+              <View style={styles.weatherDetail}>
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      fontWeight: "800",
+                    }}
+                  >
+                    {parseFloat(day.temp.max).toFixed(1)}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      fontWeight: "400",
+                      paddingBottom: 50,
+                    }}
+                  >
+                    {parseFloat(day.temp.min).toFixed(1)}
+                  </Text>
+                </View>
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      fontWeight: "800",
+                    }}
+                  >
+                    {isNaN(parseFloat(day.rain))
+                      ? "No DATA"
+                      : parseFloat(day.rain).toFixed(1)}
+                    %
+                    <Fontisto name="rain" size={18} color="black" />
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      fontWeight: "400",
+                      paddingBottom: 50,
+                    }}
+                  >
+                    {day.wind_speed} km/h wind
+                  </Text>
+                </View>
+              </View>
             </View>
           ))
         )}
@@ -109,17 +203,32 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
   },
   city: {
-    flex: 1,
-    justifyContent: "center",
+    flex: 0.5,
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   cityName: {
-    fontSize: 68,
+    flex: 1,
+    fontSize: 30,
+    fontWeight: "600",
+    marginTop: 100,
+  },
+  date: {
+    flex: 3,
+    width: SCREEN_WIDTH,
+    justifyContent: "center",
+    paddingHorizontal: 20,
+  },
+  dateText: {
+    fontSize: 20,
     fontWeight: "500",
+    paddingRight: 30,
   },
   weather: {},
   day: {
+    flex: 2,
     width: SCREEN_WIDTH,
+    justifyContent: "flex-start",
     alignItems: "flex-start",
     paddingHorizontal: 20,
   },
@@ -136,5 +245,12 @@ const styles = StyleSheet.create({
     marginTop: -5,
     fontSize: 25,
     fontWeight: "500",
+  },
+  weatherDetail: {
+    flex: 0.75,
+    flexDirection: "row",
+    paddingHorizontal: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
